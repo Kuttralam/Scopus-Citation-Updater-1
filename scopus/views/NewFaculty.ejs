@@ -1,9 +1,10 @@
 <%- include ('partials/header'); -%>
 
-<form action = "/excel" method = "GET" >
-    <input type ="text" placeholder = "Faculty name " name="orcid">
-    <input type ="text" placeholder = "Scopus Id" name="password">
+<div id="bodybox">
+<form action = "/adding" method = "GET" >
+    <input type ="text" placeholder = "Faculty name " name="name">
+    <input type ="text" placeholder = "Scopus Id" name="scopusId">
     <input type = "submit">
 </form>
-
+</div>
 <%- include ('partials/footer.ejs'); -%>

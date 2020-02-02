@@ -4,6 +4,41 @@ const request = require('request');
 const apikey = '951919cec39c3b1f09885ba8575b587b'
 const xml = require("xml-parse");
 var OrcidStrategy = require('passport-orcid').Strategy;
+var mongoose = require("mongoose");
+
+mongoose.connect("mongodb://localhost/Scopus",{useNewUrlParser: true});
+
+var ScopusSchema = new mongoose.Schema({
+    name : String,
+    scopusId : String,
+    citationCount : Number,
+    moreInfo : String
+});
+
+var Scopus = mongoose.model("Scopusdb",ScopusSchema);
+
+var currFaculty = new Scopus({
+    name:"Sabharish",
+    scopusId:"2323233",
+    citationCount:123,
+    moreInfo:"Not Available"
+});
+
+/**
+Scopus.create(currFaculty,function(err,Scopus)
+{
+    if(err)
+    {
+        console.log("db creationla thappu");
+    }
+    else
+    {
+        console.log("default Scopus created");
+    }
+})
+ */
+
+
 app.use(express.static("public"));
 app.set("view engine","ejs");
 
@@ -19,14 +54,35 @@ app.get("/index",function(req,res)
 
 app.get("/excel",function(req,res)
 {
-    console.log("Excel Sheet");
-    res.render("excel")
+    Scopus.find({},function(err,AllScopus)
+    {
+        if(err)
+        {
+            console.log("findingla thappu");
+        }
+        else{
+            console.log("Excel Sheet");
+            res.render("excel",{Scopus:AllScopus});
+        }
+    })
 })
 app.get("/addNew",function(req,res)
 {
     console.log("Excel Sheet");
     res.render("NewFaculty")
 })
+
+app.get("/adding",function(req,res)
+{
+    Scopus.create( new Scopus({
+        name:req.query.name,
+        scopusId:req.query.scopusId,
+        citationCount:0,
+        moreInfo:"Not Available"
+    }))
+    console.log("Adding Scopus of faculty");
+    res.redirect("/excel");
+});
 
 app.get("/login",function(req,res)
 {

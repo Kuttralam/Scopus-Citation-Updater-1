@@ -1,6 +1,6 @@
 <%- include ('partials/header'); -%>
 
-
+<% console.log(Scopus);%>
 <div id="bodybox">
 
   <table style="width:100%">
@@ -18,9 +18,18 @@
       <th>Detailed Information</th>
 
     </tr>
+<% for(var i=0;i<Scopus.length;i++){ %>
+  <tr>
+    <td><%= i+1 %></td>
+    <td><%= Scopus[i]["name"] %></td>
+    <td><%= Scopus[i]["scopusId"] %></td>
+    <td><%= Scopus[i]["citationCount"] %></td>
+    <td><%= Scopus[i]["moreInfo"] %></td>
+  </tr>
+<% } %>
 
+<!--
     <tr>
-
       <td>1</td>
 
       <td>Bill Gates</td>
@@ -32,7 +41,7 @@
       <td><a href = '/search/serial'>More info</a></td>
 
     </tr>
-
+-->
   </table>
   <div id='buttondiv'>
   <button type="submit"><a href="/addNew" > Add new </a></button>
