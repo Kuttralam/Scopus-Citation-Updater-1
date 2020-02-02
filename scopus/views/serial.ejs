@@ -1,0 +1,71 @@
+<%- include ('partials/header'); -%>
+
+<% var results = data[0]["text"]%>
+<% var searchdata = JSON.parse(results) %>
+<% var serialmetadata = searchdata["serial-metadata-response"] %>
+
+<% var entry = serialmetadata['entry'][0] %>
+<% var sniplist = entry['SNIPList']['SNIP'] %>
+<% var sjrlist = entry['SJRList']['SJR'] %>
+<% var citescore = entry['citeScoreYearInfoList'] %>
+
+<% var links = entry["link"] %>
+
+
+<h1> SNIPLIST</h1>
+    <p>
+        
+        <% for(var i=0;i<sniplist.length;i++) { %>
+            <%= sniplist[i]['$'] %>
+        
+        <%}%>
+        
+<h1> SJRLIST</h1>       
+        
+        <% for(var i=0;i<sjrlist.length;i++) { %>
+            <%= sjrlist[i]['$'] %>
+        
+        <%}%>
+        
+<h1> citeScoreYearInfoList</h1>
+    <ul>
+        <li> <h1>citeScoreCurrentMetric</h1>
+                <%= citescore["citeScoreCurrentMetric"] %>
+        </li>
+        
+         <li><h1> citeScoreCurrentMetricYear</h1>
+                <%= citescore["citeScoreCurrentMetricYear"] %>
+        </li>
+         
+          <li><h1> citeScoreTracker</h1> 
+                <%= citescore["citeScoreTracker"] %>
+        </li>
+          
+           <li> <h1>citeScoreTrackerYear</h1>
+                <%= citescore["citeScoreTrackerYear"] %>
+        </li>
+    </ul>
+</p>  
+
+
+<h1> Various Links</h1>
+    <p>
+        
+        <% for(var i=0;i<links.length;i++) { %>
+        
+            <% var object = links[i]['@ref'] %>
+            <% var link = links[i]['@href'] %>
+               <h1> <%= object %> </h1>
+            
+            <% if (object==="coverimage") { %>
+                <img src=<%=link%>>
+            <% } %>
+            
+            <% if (object!="coverimage") { %>
+             <a href = <%=link%> >
+                <%=links[i]['@href'] %>
+             </a>
+            <% } %> 
+        <%}%>
+</p>
+<%- include ('partials/footer.ejs'); -%>

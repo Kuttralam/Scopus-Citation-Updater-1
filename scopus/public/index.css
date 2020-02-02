@@ -1,0 +1,42 @@
+body{
+    background:url('/res/homebg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#bodybox{
+    background-color: white;
+    width: 700px;
+    margin-right: auto;
+    margin-left: auto;
+    height:100%;
+    padding:50px;
+
+}
+
+
+html,body{
+    height: 100%;
+    overflow: hidden;
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    background-color: white;
+    padding:20px;
+}
+
+th, td {
+    padding: 5px;
+    text-align: left;    
+  }
+
+a{
+    text-decoration: none;
+  }
+
+#buttondiv{
+    margin-top:20px; 
+    margin-left:300px;
+}

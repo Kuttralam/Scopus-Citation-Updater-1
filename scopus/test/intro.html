@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+  margin: 0;
+  background:url('/res/homebg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+   
+#bodybox{
+    background-color: white;
+    width: 700px;
+    margin-right: auto;
+    margin-left: auto;
+    height:100%;
+    padding:50px;
+
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 15%;
+  background-color: #f1f1f1;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+}
+
+li a {
+  display: block;
+  color: #000;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+li a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+li a:hover:not(.active) {
+  background-color: #555;
+  color: white;
+}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="/views/main.js"></script>
+</head>
+<body>
+<div id="bodybox">
+<ul>
+  <li id = "li1"><a class="active">Home</a></li>
+  <li id = "li2"><a class="inactive" id="menu2">News</a></li>
+  <li id = "li3"><a class="inactive">Contact</a></li>
+  <li id = "li4"><a class="inactive">About</a></li>
+</ul>
+
+<div id = "content" style="margin-left:35%;padding:1px 16px;height:1000px;">
+    <h2 id='#citations'> Cited by count </h2>
+    <h4>Retrieving Scopus Cited-By counts using scopus id of the document </h4>
+    <form action = "/search/citation" method = "GET" >
+        <input type ="text" placeholder = "Scopus id " name="scopusid">
+        <input type = "submit">
+    </form>
+        
+</div>
+</div>
+</body>
+</html>

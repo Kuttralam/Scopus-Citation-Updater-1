@@ -1,0 +1,21 @@
+<%- include ('partials/header'); -%>
+<% var data=ThingVar[0]["text"]%>
+<% var searchdata = JSON.parse(data) %>
+<% var entry = searchdata["search-results"]["entry"] %>
+<h1>
+    Search results for affiliations
+    <%= affiliation1%>
+    <%= affiliation2%>
+</h1>
+<p>
+    <ul>
+        <% for(var i=0;i<entry.length;i++) {%>
+        <% var affiliation = entry[i]["affiliation"][0]["affilname"]; %>
+        <li>
+            <%=affiliation%>
+            </li>
+            <%}%>
+    </ul>
+</p>  
+
+<%- include ('partials/footer.ejs'); -%>
