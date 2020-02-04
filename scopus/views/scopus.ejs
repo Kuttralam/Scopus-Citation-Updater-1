@@ -1,17 +1,28 @@
-<%- include ('partials/header'); -%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Scopus Citation Updater
+        </title>
+        <link rel = "stylesheet" type="text/css" href="/scopus.css">
+        <link rel="scopus" href="http://www.scopus.com/inward/record.url?partnerID=HzOxMe3b&scp=49549114022&origin=inward"/>
+    </head>
+    <body>
 
 <% var results = data[0]["text"]%>
 <% var searchdata = JSON.parse(results) %>
 <% var searchresults = searchdata["search-results"]["entry"] %>
 
-    <p>
-    <ul>
-        <% for(var i=0;i<searchresults.length;i++) {%>
-        <% var affiliation = searchresults[i]["dc:title"]; %>
-        <li>
-            <h4><%=affiliation%></h4>
+<div id="bodybox">
+    <h1>Scopus Search for the keyword</h1>
+        <ul>
+            <% for(var i=0;i<searchresults.length;i++) {%>
+            <% var finalData = searchresults[i]["dc:title"]; %>
+            <li>
+                <h4><%=finalData%></h4>
             </li>
-            <%}%>
-    </ul>
-</p>  
+                <%}%>
+        </ul>
+</div> 
+
 <%- include ('partials/footer.ejs'); -%>

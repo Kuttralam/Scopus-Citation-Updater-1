@@ -13,6 +13,8 @@
 
       <th>Scopus Id</th>
 
+      <th>Author Id</th>
+
       <th>Citation Count</th>
 
       <th>Detailed Information</th>
@@ -24,8 +26,9 @@
     <td><%= i+1 %></td>
     <td id="name"><%= Scopus[i]["name"] %></td>
     <td><%= Scopus[i]["scopusId"] %></td>
+    <td><%= Scopus[i]["authorId"] %></td>
     <td><%= Scopus[i]["citationCount"] %></td>
-    <td><%= Scopus[i]["moreInfo"] %></td>
+    <td><a href="#" onclick="viewDetail(this)">Click Here</a></td>
     <td><a href="#" onclick="remove(this)" class="close">X</a></td>
   </tr>
 <% } %>
@@ -35,6 +38,21 @@
     var name = x.parentElement.parentElement.childNodes.item(3).innerText;
     let form = document.createElement('form');
     form.action = '/removing';
+    form.method = 'GET';
+
+    form.innerHTML = '<input name="name" value="'+name+'">';
+
+    // the form must be in the document to submit it
+    document.body.append(form);
+
+    form.submit();
+  }
+
+  function viewDetail(x)
+  {
+    var name = x.parentElement.parentElement.childNodes.item(3).innerText;
+    let form = document.createElement('form');
+    form.action = '/details';
     form.method = 'GET';
 
     form.innerHTML = '<input name="name" value="'+name+'">';

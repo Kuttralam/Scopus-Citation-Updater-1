@@ -1,7 +1,16 @@
-<%- include ('partials/header'); -%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Scopus Citation Updater
+        </title>
+        <link rel = "stylesheet" type="text/css" href="/serial.css">
+        <link rel="scopus" href="http://www.scopus.com/inward/record.url?partnerID=HzOxMe3b&scp=49549114022&origin=inward"/>
+    </head>
+    <body>
 
-<% var results = data[0]["text"]%>
-<% var searchdata = JSON.parse(results) %>
+<% var rests = data[0]["text"]%>
+<% var searchdata = JSON.parse(rests) %>
 <% var serialmetadata = searchdata["serial-metadata-response"] %>
 
 <% var entry = serialmetadata['entry'][0] %>
@@ -12,39 +21,41 @@
 <% var links = entry["link"] %>
 
 
+<div id ="bodybox">
 <h1> SNIPLIST</h1>
-    <p>
+    <h3>
         
         <% for(var i=0;i<sniplist.length;i++) { %>
             <%= sniplist[i]['$'] %>
         
         <%}%>
+    </h3>
         
 <h1> SJRLIST</h1>       
-        
+    <h3>
         <% for(var i=0;i<sjrlist.length;i++) { %>
             <%= sjrlist[i]['$'] %>
         
         <%}%>
+    </h3>
+<h1> CiteScoreYearInfoList</h1>
+    
+         <h2>CiteScoreCurrentMetric</h2>
+                <h4><%= citescore["citeScoreCurrentMetric"] %></h4>
         
-<h1> citeScoreYearInfoList</h1>
-    <ul>
-        <li> <h1>citeScoreCurrentMetric</h1>
-                <%= citescore["citeScoreCurrentMetric"] %>
-        </li>
         
-         <li><h1> citeScoreCurrentMetricYear</h1>
-                <%= citescore["citeScoreCurrentMetricYear"] %>
-        </li>
+         <h2>CiteScoreCurrentMetricYear</h2>
+                <h4><%= citescore["citeScoreCurrentMetricYear"] %></h4>
+        
          
-          <li><h1> citeScoreTracker</h1> 
-                <%= citescore["citeScoreTracker"] %>
-        </li>
+          <h2>CiteScoreTracker</h2> 
+                 <h4><%= citescore["citeScoreTracker"] %></h4>
+        
           
-           <li> <h1>citeScoreTrackerYear</h1>
-                <%= citescore["citeScoreTrackerYear"] %>
-        </li>
-    </ul>
+           <h2>CiteScoreTrackerYear</h2>
+                <h4><%= citescore["citeScoreTrackerYear"] %></h4>
+        
+    
 </p>  
 
 
@@ -68,4 +79,7 @@
             <% } %> 
         <%}%>
 </p>
+
+</div>
+
 <%- include ('partials/footer.ejs'); -%>

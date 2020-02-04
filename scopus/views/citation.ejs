@@ -4,9 +4,12 @@
 <% var searchdata = JSON.parse(results) %>
 <% var entry = searchdata["search-results"]["entry"] %>
 <% var count = entry[0]["citedby-count"] %>
+<% console.log(entry) %>
+<div id="bodybox">
+    <h1>
+        CITATION COUNT 
+    </h1>
 <h1>
     <%=count%>
 </h1>
-<iframe  height="50" data="http://api.elsevier.com/content/abstract/citation-count?doi=10.1016/S0014-5793(01)03313-0&httpAccept=text/html&apiKey=951919cec39c3b1f09885ba8575b587b"></iframe>
-
 <%- include ('partials/footer.ejs'); -%>

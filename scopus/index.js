@@ -11,6 +11,7 @@ mongoose.connect("mongodb://localhost/Scopus",{useNewUrlParser: true});
 var ScopusSchema = new mongoose.Schema({
     name : String,
     scopusId : String,
+    authorId:String,
     citationCount : Number,
     moreInfo : String
 });
@@ -20,6 +21,7 @@ var Scopus = mongoose.model("Scopusdb",ScopusSchema);
 var currFaculty = new Scopus({
     name:"Sabharish",
     scopusId:"2323233",
+    authorId:"1212121",
     citationCount:123,
     moreInfo:"Not Available"
 });
@@ -77,6 +79,7 @@ app.get("/adding",function(req,res)
     Scopus.create( new Scopus({
         name:req.query.name,
         scopusId:req.query.scopusId,
+        authorId:req.query.authorId,
         citationCount:0,
         moreInfo:"Not Available"
     }))
@@ -156,6 +159,22 @@ app.get("/search/scopus",function(req,res)
     });
 });
 
+app.get("/details",function(req,res)
+{
+    var name = req.query.name;
+    console.log(name);
+
+    Scopus.find({name:name},{'_id':0,'authorId':1},function(err,result)
+    {
+        if(err){}
+        else{
+            var searchResult = result[0]["authorId"];
+            console.log(searchResult);
+            res.send(searchResult);
+        }
+    })
+});
+/**
 app.get("/search/abstractcitation",function(req,res)
 {
     console.log("Abstract Citation Count ")
@@ -180,7 +199,7 @@ app.get("/search/abstractcitation",function(req,res)
    
     });
 });
-
+ */
 /**
 app.get("/search/affiliation",function(req,res)
 {
