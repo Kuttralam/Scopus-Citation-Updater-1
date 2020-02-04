@@ -29,7 +29,7 @@ table, th, td {
 
 th, td {
     padding: 5px;
-    text-align: left;    
+    text-align: left;  
   }
 
 a{
@@ -72,3 +72,23 @@ ul {
   html,body{
     overflow: hidden;
   }
+
+  .close {
+    opacity: 0.3;
+  }
+  .close:hover {
+    opacity: 1;
+    color: red;
+  }
+  .close:before, .close:after {
+    height: 15px;
+    width: 2px;
+    background-color: #333;
+  }
+  .close:before {
+    transform: rotate(45deg);
+  }
+  .close:after {
+    transform: rotate(-45deg);
+  }
+  

@@ -84,6 +84,21 @@ app.get("/adding",function(req,res)
     res.redirect("/excel");
 });
 
+app.get("/removing",function(req,res)
+{
+    var x = req.query.name;
+    console.log(x);
+    console.log("removing Scopus of faculty");
+    Scopus.deleteOne({name:x},function(err)
+    {
+        if(err) {console.log("deletingla thappu");}
+        else{
+            console.log("delete paniten");
+        }
+    })
+    res.redirect("/excel");
+});
+
 app.get("/login",function(req,res)
 {
     console.log("Login page");
