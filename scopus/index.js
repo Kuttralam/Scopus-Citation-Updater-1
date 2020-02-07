@@ -127,9 +127,7 @@ app.get("/search/citation",function(req,res)
     }
     else if(!error)
     {
-        var jsonObj = xml.parse(body);
-        var jsonStr = xml.stringify(jsonObj,5);
-        
+        var jsonObj = xml.parse(body);        
         res.render("citation",{data:jsonObj});
     }
    
@@ -151,7 +149,6 @@ app.get("/search/scopus",function(req,res)
     else if(!error)
     {
         var jsonObj = xml.parse(body);
-        var jsonStr = xml.stringify(jsonObj,5);
         
         res.render("scopus",{data:jsonObj});
     }
@@ -170,7 +167,29 @@ app.get("/details",function(req,res)
         else{
             var searchResult = result[0]["authorId"];
             console.log(searchResult);
-            res.send(searchResult);
+
+            var options={
+            url :"https://api.elsevier.com/content/author/author_id/22988279600?apiKey=7f59af901d2d86f78a1fd60c1bf9426a",
+            headers:{'Accept': 'application/json'}
+            };
+            request(options, function (error, response, body) {
+            if(error)
+            {
+                console.error('error in Authors :', error); // Print the error if one occurred
+                console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+                res.send("error")
+            }
+            else if(!error)
+            {
+                //var jsonObj = xml.parse(body);
+                //console.log(body);
+                var jsonObj = JSON.parse(body);
+                var reqData = jsonObj['author-retrieval-response'][0];
+                res.render("details",{data:reqData});
+            }
+           
+            });
+
         }
     })
 });

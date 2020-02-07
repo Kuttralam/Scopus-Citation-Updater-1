@@ -1,6 +1,36 @@
 <%- include ('partials/header'); -%>
 
 <div id ="bodybox">
+    
+    <% var status = data["@status"] %>
+    <% var coredata = data["coredata"] %>
+    <% var authprofile = data["author-profile"] %>
+
+    <% var cited = coredata["cited-by-count"] %>
+    <% var citation = coredata["citation-count"] %>
+    <% var links = coredata["link"][0]["@href"] %>
+
+    <% var name = authprofile["preferred-name"]["indexed-name"] %>
+
+    <% var publications = authprofile["publication-range"] %>
+    <% var journalHist = authprofile["journal-history"] %>
+
+    <% var startPub = publications["@start"] %>
+    <% var endPub = publications["@end"] %>
+
+    <% var journal = journalHist["journal"] %>
+
+    <p><%= cited %></p>
+    <p><%= citation %></p>
+    <p><%= links %></p>
+    <p><%= name %></p>
+    <p><%= startPub %></p>
+    <p><%= endPub %></p>
+
+    <% console.log(journal) %>
+    <% for(var i=0;i<journal.length;i++){ %>
+        <p> <%= journal[i]["sourcetitle"] %></p>
+    <% } %>
 </div>
 
 <%- include ('partials/footer.ejs'); -%>
