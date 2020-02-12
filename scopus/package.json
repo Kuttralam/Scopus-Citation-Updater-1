@@ -4,6 +4,7 @@
   "description": "Software project",
   "main": "index.js",
   "dependencies": {
+    "alert-node": "^2.1.4",
     "ejs": "^3.0.1",
     "express": "^4.17.1",
     "express-session": "^1.17.0",
