@@ -261,3 +261,5 @@ app.listen(8000,"localhost",function()
         console.log("Not Connected to Database ERROR! ", err);
 });
 })
+
+module.exports = app; // for testing

@@ -14,13 +14,18 @@
     "node-cleanup": "^2.1.2",
     "passport": "^0.4.1",
     "passport-orcid": "0.0.4",
-    "request": "^2.88.0",
     "tmp": "^0.0.33",
     "xml-parse": "^0.4.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^7.0.1",
+    "request": "^2.88.2",
+    "superagent": "^5.2.1",
+    "supertest": "^4.0.2"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "author": "sathiyajith and team",
   "license": "ISC",
