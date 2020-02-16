@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <title>
+        Index Page
+
+    </title>
     <link rel = "stylesheet" type="text/css" href="/index.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="/main.js"></script>
@@ -8,17 +12,17 @@
 <body>
 <div id="bodybox">
 <ul>
-  <li id = "li1"><a class="active">Citation Count</a></li>
-  <li id = "li2"><a >Scopus Search</a></li>
+  <li id = "li1"><a class="active" href="#Citation">Citation Count</a></li>
+  <li id = "li2"><a href="#Scopus" >Scopus Search</a></li>
   <!-- <li id = "li3"><a >Abstract Citation count</a></li> -->
-  <li id = "li4"><a >Serial Title</a></li>
+  <li id = "li4"><a href="#Serial">Serial Title</a></li>
 </ul>
 
 <div id = "content" style="margin-left:35%;padding:1px 16px;height:1000px;">
     <h2 id='#citations'> Cited by count </h2>
     <h4>Retrieving Scopus Cited-By counts using scopus id of the document </h4>
     <form action = "/search/citation" method = "GET" >
-        <input type ="text" placeholder = "Scopus id " name="scopusid">
+        <input type ="text" placeholder = "Scopus id " id="scopusId" name="scopusid">
         <input id = "scopusSubmit" type = "submit">
     </form>
         
