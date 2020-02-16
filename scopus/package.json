@@ -9,7 +9,7 @@
     "express": "^4.17.1",
     "express-session": "^1.17.0",
     "fast-xml-parser": "^3.15.1",
-    "mongodb": "^3.5.2",
+    "mongodb": "^3.5.3",
     "mongoose": "^5.8.11",
     "node-cleanup": "^2.1.2",
     "passport": "^0.4.1",

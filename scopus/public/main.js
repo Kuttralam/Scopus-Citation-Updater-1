@@ -14,14 +14,14 @@ window.onload = function(){
     var li4 = document.querySelector("#li4 a");
     
     document.getElementById("li1").onclick=function(){
-        divs.innerHTML = "<h2 id='#citations'> Cited by count </h2><h4>Retrieving Scopus Cited-By counts using scopus id of the document </h4><form action = '/search/citation' method = 'GET' ><input type ='text' placeholder = 'Scopus id ' name='scopusid'><input type = 'submit'></form>";
+        divs.innerHTML = "<h2 id='#citations'> Cited by count </h2><h4>Retrieving Scopus Cited-By counts using scopus id of the document </h4><form action = '/search/citation' method = 'GET' ><input type ='text' placeholder = 'Scopus id ' name='scopusid'><input id='searchSubmit' type = 'submit'></form>";
         li3.classList.remove("active");
         li4.classList.remove("active");
         li2.classList.remove("active");    
     }
     
     document.getElementById("li2").onclick=function(){
-        divs.innerHTML =  "<h2>Scopus Search </h2><h4>This search can retrieve anything based on a keyword</h4><form action = '/search/scopus' method = 'GET' ><input type ='text' placeholder = 'Keyword' name='keyword'><input type = 'submit'></form>";
+        divs.innerHTML =  "<h2>Scopus Search </h2><h4>This search can retrieve anything based on a keyword</h4><form action = '/search/scopus' method = 'GET' ><input type ='text' placeholder = 'Keyword' name='keyword'><input id = 'searchSubmit' type = 'submit'></form>";
         
         li3.classList.remove("active");
         li4.classList.remove("active");
@@ -37,7 +37,7 @@ window.onload = function(){
     }
     */
     document.getElementById("li4").onclick=function(){
-        divs.innerHTML = "<h2> Serial Title or ISSN search </h2><h4>This search can retrieve citation based on doi</h4><form action = '/search/serial' method = 'GET' ><input type ='text' placeholder = 'Serial Title ' name='title'><input type ='text' placeholder = 'ISSN' name='issn'><input type = 'submit'></form>";
+        divs.innerHTML = "<h2> Serial Title or ISSN search </h2><h4>This search can retrieve citation based on doi</h4><form action = '/search/serial' method = 'GET' ><input type ='text' placeholder = 'Serial Title ' name='title'><input type ='text' placeholder = 'ISSN' name='issn'><input id='searchSubmit' type = 'submit'></form>";
        
         li3.classList.remove("active");
         li4.classList.add("active");

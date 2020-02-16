@@ -24,7 +24,7 @@ h1
 #orcid,#password{
     width: 100%;
 }
-#submit,a
+#loginSubmit,a
 {
     margin-left: 40%;
     text-decoration: none;

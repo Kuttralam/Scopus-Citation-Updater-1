@@ -6,7 +6,6 @@ const xml = require("xml-parse");
 var OrcidStrategy = require('passport-orcid').Strategy;
 var mongoose = require("mongoose");
 
-mongoose.connect("mongodb://localhost/Scopus",{useNewUrlParser: true});
 
 var ScopusSchema = new mongoose.Schema({
     name : String,
@@ -247,4 +246,9 @@ app.get("/search/serial",function(req,res)
 app.listen(8000,"localhost",function()
 {
     console.log("server started");
+    mongoose.connect("mongodb://127.0.0.1:27017/Scopus",{useNewUrlParser: true, useUnifiedTopology: true }).then(() => {
+        console.log("Connected to Database");
+    }).catch((err) => {
+        console.log("Not Connected to Database ERROR! ", err);
+});
 })
