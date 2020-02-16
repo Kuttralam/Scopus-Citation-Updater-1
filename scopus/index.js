@@ -73,6 +73,14 @@ app.get("/addNew",function(req,res)
 
 app.get("/adding",function(req,res)
 {
+    var authorId = req.query.authorId;
+    var name = req.query.name;
+    var scopusId = req.query.scopusId;
+    if (authorId=='' || name==''||scopusId=='')
+    {
+        res.redirect("/addNew")
+    }
+    else{
     Scopus.create( new Scopus({
         name:req.query.name,
         scopusId:req.query.scopusId,
@@ -82,6 +90,7 @@ app.get("/adding",function(req,res)
     }))
     console.log("Adding Scopus of faculty");
     res.redirect("/excel");
+    }
 });
 
 app.get("/removing",function(req,res)
