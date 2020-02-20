@@ -194,7 +194,7 @@ app.get("/details",function(req,res)
             console.log(searchResult);
 
             var options={
-            url :"https://api.elsevier.com/content/author/author_id/22988279600?apiKey=7f59af901d2d86f78a1fd60c1bf9426a",
+            url :"https://api.elsevier.com/content/author/author_id/22988279600?apiKey=8f37d808f954e09834b141d2fca97bbf",
             headers:{'Accept': 'application/json'}
             };
             request(options, function (error, response, body) {
@@ -209,8 +209,15 @@ app.get("/details",function(req,res)
                 //var jsonObj = xml.parse(body);
                 //console.log(body);
                 var jsonObj = JSON.parse(body);
+                console.log(jsonObj);
+                if (jsonObj['author-retrieval-response']==undefined)
+                {
+                    res.send("No details");
+                }
+                else{
                 var reqData = jsonObj['author-retrieval-response'][0];
                 res.render("details",{data:reqData});
+                }
             }
            
             });

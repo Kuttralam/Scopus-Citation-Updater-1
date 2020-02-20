@@ -82,7 +82,7 @@ describe('4) EXCEL PAGE', function(done){
         let authorId='15sasasasasasa'
         request('http://localhost:8000/adding?name='+name+'&scopusId='+scopusId+'&authorId='+authorId , function(error, response, body)
          {
-            expect('Location','/');   
+            expect(response.statusCode).not.to.equal(200);   
             done();
          });
         });
