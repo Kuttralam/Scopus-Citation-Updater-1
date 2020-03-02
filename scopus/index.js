@@ -215,9 +215,25 @@ app.get("/details",function(req,res)
                     res.send("No details");
                 }
                 else{
-                    
+
                 var reqData = jsonObj['author-retrieval-response'][0];
+                var citation = reqData["coredata"]["citation-count"];
+                var query = { authorId: searchResult };
+                Scopus.findOneAndUpdate(query, { citationCount: citation},function(err,doc,res){
+                    if(err)
+                    {
+                        console.log("error");
+                    }
+                    else
+                    {
+                        console.log("success");
+                    }
+                })
+
+
+                
                 res.render("details",{data:reqData});
+
                 }
             }
            
