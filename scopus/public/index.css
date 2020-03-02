@@ -25,6 +25,8 @@ table, th, td {
     border-collapse: collapse;
     background-color: white;
     padding:20px;
+    width:1%;
+    white-space:nowrap;
 }
 
 th, td {
@@ -69,9 +71,6 @@ ul {
     color: white;
   }
   
-  html,body{
-    overflow: hidden;
-  }
 
   .close {
     opacity: 0.3;

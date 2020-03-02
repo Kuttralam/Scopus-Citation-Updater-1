@@ -56,7 +56,7 @@ app.get("/excel",function(req,res)
     {
         if(err)
         {
-            console.log("findingla thappu");
+            console.log("finding is wrong");
         }
         else{
             console.log("Excel Sheet");
@@ -96,13 +96,13 @@ app.get("/adding",function(req,res)
 app.get("/removing",function(req,res)
 {
     var x = req.query.name;
-    console.log(x);
+    //console.log(x);
     console.log("removing Scopus of faculty");
     Scopus.deleteOne({name:x},function(err)
     {
-        if(err) {console.log("deletingla thappu");}
+        if(err) {console.log("deleting is wrong");}
         else{
-            console.log("delete paniten");
+            console.log("deleted");
         }
     })
     res.redirect("/excel");
@@ -184,7 +184,7 @@ app.get("/search/scopus",function(req,res)
 app.get("/details",function(req,res)
 {
     var name = req.query.name;
-    console.log(name);
+    //console.log(name);
 
     Scopus.find({name:name},{'_id':0,'authorId':1},function(err,result)
     {
@@ -192,9 +192,9 @@ app.get("/details",function(req,res)
         else{
             var searchResult = result[0]["authorId"];
             console.log(searchResult);
-
+            //22988279600
             var options={
-            url :"https://api.elsevier.com/content/author/author_id/22988279600?apiKey=8f37d808f954e09834b141d2fca97bbf",
+            url :"https://api.elsevier.com/content/author/author_id/"+searchResult+"?apiKey=951919cec39c3b1f09885ba8575b587b",
             headers:{'Accept': 'application/json'}
             };
             request(options, function (error, response, body) {
@@ -209,12 +209,13 @@ app.get("/details",function(req,res)
                 //var jsonObj = xml.parse(body);
                 //console.log(body);
                 var jsonObj = JSON.parse(body);
-                console.log(jsonObj);
+                //console.log(jsonObj);
                 if (jsonObj['author-retrieval-response']==undefined)
                 {
                     res.send("No details");
                 }
                 else{
+                    
                 var reqData = jsonObj['author-retrieval-response'][0];
                 res.render("details",{data:reqData});
                 }
@@ -232,7 +233,7 @@ app.get("/search/serial",function(req,res)
    console.log("Serial Title page"); 
    var title = req.query.title;
    var issn = req.query.issn;
-   var url = 'https://api.elsevier.com/content/serial/title?issn=03781119&apiKey=951919cec39c3b1f09885ba8575b587b';
+   var url = 'https://api.elsevier.com/content/serial/title?issn='+issn+'&apiKey=951919cec39c3b1f09885ba8575b587b';
 
    if (issn=="")
    {

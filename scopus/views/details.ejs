@@ -1,4 +1,9 @@
-<%- include ('partials/header'); -%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel = "stylesheet" type="text/css" href="/details.css">
+        <link rel="scopus" href="http://www.scopus.com/inward/record.url?partnerID=HzOxMe3b&scp=49549114022&origin=inward"/>
+
 
 <div id ="bodybox">
     
@@ -20,17 +25,26 @@
 
     <% var journal = journalHist["journal"] %>
 
-    <p><%= cited %></p>
-    <p><%= citation %></p>
-    <p><%= links %></p>
-    <p><%= name %></p>
-    <p><%= startPub %></p>
-    <p><%= endPub %></p>
-
+    <h1><%= name %></h1>
     
+    <h2>Publication Duration </h2>
+    <h3><%= startPub %> - <%= endPub %></h3>
+
+    <h2>Cited-by-count</h2>
+    <h3><%= cited %></h3>
+    <h2>Citation-count</h2>
+    <h3><%= citation %></h3>
+    
+
+    <h2> Journals published by the author </h2>
+    <ul>
     <% for(var i=0;i<journal.length;i++){ %>
-        <p> <%= journal[i]["sourcetitle"] %></p>
+        <li> <h3><%= journal[i]["sourcetitle"] %></h3></li>
     <% } %>
+    </ul>
+
+    <a href = <%= links%>><h2>Know more about the Author </h2> </a>
+
 </div>
 
 <%- include ('partials/footer.ejs'); -%>
