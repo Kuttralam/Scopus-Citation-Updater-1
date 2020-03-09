@@ -8,9 +8,7 @@ window.onload = function(){
     var divs = document.getElementById("content");
     var li1 = document.getElementById("li1 a");
     var li2 = document.querySelector("#li2 a");
-    /** 
     var li3 = document.querySelector("#li3 a");
-    */
     var li4 = document.querySelector("#li4 a");
     
     document.getElementById("li1").onclick=function(){
@@ -28,15 +26,12 @@ window.onload = function(){
         li4.classList.remove("active");
         li2.classList.add("active");    
     }
-    /** 
     document.getElementById("li3").onclick=function(){
-        divs.innerHTML = "<h2> Abstract Citation count </h2><h4>This search can retrieve citation based on doi</h4><form action = '/search/abstractcitation' method = 'GET' ><input type ='text' placeholder = 'doi ' name='doi'><input type = 'submit'></form>";
         
         li3.classList.add("active");
         li4.classList.remove("active");
         li2.classList.remove("active");    
     }
-    */
     document.getElementById("li4").onclick=function(){
         divs.innerHTML = "<h2 id='SerialTest'> Serial Title or ISSN search </h2><h4>This search can retrieve citation based on doi</h4><form action = '/search/serial' method = 'GET' ><input type ='text' id ='serialTitle' placeholder = 'Serial Title ' name='title'><input type ='text' id='issn' placeholder = 'ISSN' name='issn'><input id='searchSubmit' type = 'submit'></form>";
         document.title = "Serial Title Page";

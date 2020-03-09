@@ -45,10 +45,6 @@ app.get("/authenticate",function(req,res)
         res.redirect("/index");
     }
 });
-app.get("/index",function(req,res)
-{
-   res.render("index");
-});
 
 app.get("/excel",function(req,res)
 {
@@ -108,11 +104,6 @@ app.get("/removing",function(req,res)
     res.redirect("/excel");
 });
 
-app.get("/login",function(req,res)
-{
-    console.log("Login page");
-    res.render("login");
-});
 
 app.get("/",function(req,res)
 {
@@ -249,6 +240,7 @@ app.get("/search/serial",function(req,res)
    console.log("Serial Title page"); 
    var title = req.query.title;
    var issn = req.query.issn;
+   //03781119
    var url = 'https://api.elsevier.com/content/serial/title?issn='+issn+'&apiKey=951919cec39c3b1f09885ba8575b587b';
 
    if (issn=="")
@@ -269,6 +261,7 @@ app.get("/search/serial",function(req,res)
         {
             var jsonObj = xml.parse(body);
             var jsonStr = xml.stringify(jsonObj,5);
+            console.log()
             res.render("serial",{data:jsonObj});
         }
         });
@@ -276,7 +269,86 @@ app.get("/search/serial",function(req,res)
    
 });
 
-app.listen(8000,"localhost",function()
+var session = require('express-session')
+var passport = require('passport')
+var OrcidStrategy = require('passport-orcid').Strategy
+
+app.use(session({ secret: 'foo', resave: false, saveUninitialized: false }))
+app.use('/files', express.static('files'))
+
+app.use(passport.initialize())
+app.use(passport.session())
+
+
+// these are needed for storing the user in the session
+passport.serializeUser(function (user, done) {
+  done(null, user)
+})
+
+passport.deserializeUser(function (user, done) {
+  done(null, user)
+})
+
+// add the ORCID authentication strategy
+passport.use(new OrcidStrategy({
+  state: true, // remove this if not using sessions
+  clientID: "APP-H1VKA3G0PJUY7B5B",
+  clientSecret: "278296fb-18af-4403-8200-f0e98bc25d5e",
+  callbackURL: 'http://localhost:5000/auth/orcid/callback'
+}, function (accessToken, refreshToken, params, profile, done) {
+  // `profile` is empty as ORCID has no generic profile URL,
+  // so populate the profile object from the params instead
+
+  profile = { orcid: params.orcid, name: params.name }
+
+  return done(null, profile)
+}))
+
+app.get("/login",function(req,res)
+{
+    if (req.isAuthenticated()) {
+        res.send('<a href="/auth/logout">Sign out</a>')
+      } else {
+        res.redirect("/auth/orcid/login")
+      }
+    
+})
+
+app.get('/auth/orcid/login', passport.authenticate('orcid'))
+
+app.get('/auth/orcid/callback', passport.authenticate('orcid', {
+    successRedirect: '/index',
+    failureRedirect: '/login'
+  }))
+
+app.get('/auth/logout', function (req, res) {
+    req.logout()
+    res.redirect('/')
+  })
+  
+  
+app.get("/index",checkAuth,function(req,res)
+{
+    var b = JSON.stringify(req.user);
+    res.render("index",{users:b});
+   
+}); 
+  
+  function checkAuth (req, res, next) {
+    if (!req.isAuthenticated()) res.redirect('/auth/orcid/login')
+    return next()
+  }
+  
+
+app.get('/auth/logout', function (req, res) {
+    req.logout()
+    res.redirect('/')
+  })
+
+
+
+
+app.listen(5000,"localhost",function()
 {
     console.log("server started");
     mongoose.connect("mongodb://localhost/Scopus",{useNewUrlParser: true, useUnifiedTopology: true }).then(() => {

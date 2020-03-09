@@ -11,11 +11,15 @@
 </head>
 <body>
 <div id="bodybox">
+    <% var data = JSON.parse(users) %>
+    <%= console.log(data) %>
+    <h1 class "user">WELCOME <%= data.name %>.</h1>
+    <h1 class="user">YOUR ORCID ID IS <%= data.orcid %> </h1>
 <ul>
   <li id = "li1"><a class="active" href="#Citation">Citation Count</a></li>
   <li id = "li2"><a href="#Scopus" >Scopus Search</a></li>
-  <!-- <li id = "li3"><a >Abstract Citation count</a></li> -->
   <li id = "li4"><a href="#Serial">Serial Title</a></li>
+  <li id = "li3"><a href="/excel">Excel Sheet</a></li>
 </ul>
 
 <div id = "content" style="margin-left:35%;padding:1px 16px;height:1000px;">
