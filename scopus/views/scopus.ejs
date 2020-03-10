@@ -12,7 +12,7 @@
 <% var results = data[0]["text"]%>
 <% var searchdata = JSON.parse(results) %>
 <% var searchresults = searchdata["search-results"]["entry"] %>
-
+<% console.log(searchresults[0]['error']) %>
 <div id="bodybox">
     <h1>Scopus Search for the keyword</h1>
         <ul>

@@ -1,36 +1,159 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>
-        Index Page
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Scopus Citation Updater</title>
 
-    </title>
-    <link rel = "stylesheet" type="text/css" href="/index.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="/main.js"></script>
-</head>
-<body>
-<div id="bodybox">
-    <% var data = JSON.parse(users) %>
+  <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic|Raleway:400,300,700' rel='stylesheet' type='text/css'>
+  <link href="/bootstrap.min.css" rel="stylesheet">
+  <link href="/flexslider.css" rel="stylesheet">
+  <link href="/templatemo-style.css" rel="stylesheet">
+
+<style>
+    body{
+        overflow: hidden;
+    }
+</style>
+  </head>
+  <% var data = JSON.parse(users) %>
     <%= console.log(data) %>
-    <h1 class "user">WELCOME <%= data.name %>.</h1>
-    <h1 class="user">YOUR ORCID ID IS <%= data.orcid %> </h1>
-<ul>
-  <li id = "li1"><a class="active" href="#Citation">Citation Count</a></li>
-  <li id = "li2"><a href="#Scopus" >Scopus Search</a></li>
-  <li id = "li4"><a href="#Serial">Serial Title</a></li>
-  <li id = "li3"><a href="/excel">Excel Sheet</a></li>
-</ul>
+  <body class="tm-gray-bg">
+	  
+  	<section class="tm-banner">
+		<!-- Flexslider -->
+		<div class="flexslider flexslider-banner">
+		  <ul class="slides">
+		    <li>
+			    <div class="tm-banner-inner">
+					<h1 class="tm-banner-title">Welcome <span class="tm-yellow-text">Sathiyajith</span></h1>
+					<p class="tm-banner-subtitle"><span class="tm-yellow-text">ORCID ID</span> 0000-1111-2222-3333</p>
+					<a href="/excel" class="tm-banner-link">Excel Sheet</a>	
+				</div>
+				<img src="res/banner-1.jpg" alt="Image" />	
+		    </li>
+		  </ul>
+		</div>	
+	</section>
 
-<div id = "content" style="margin-left:35%;padding:1px 16px;height:1000px;">
-    <h2 id='#citations'> Cited by count </h2>
-    <h4>Retrieving Scopus Cited-By counts using scopus id of the document </h4>
-    <form action = "/search/citation" method = "GET" >
-        <input type ="text" placeholder = "Scopus id " id="scopusId" name="scopusid">
-        <input id = "scopusSubmit" type = "submit">
-    </form>
-        
-</div>
-</div>
-</body>
-</html>
+	<!-- gray bg -->	
+	<section class="container tm-home-section-1" id="more">
+		<div class="row">
+			<div class="col-lg-4 col-md-4 col-sm-6">
+				<div class="col-lg-4 col-md-4 col-sm-6">
+					<div class="tm-home-box-1">
+						<ul class="nav nav-tabs tm-white-bg" role="tablist" id="hotelCarTabs">
+							<li role="presentation" class="active">
+								<a href="#hotel" aria-controls="hotel" role="tab" data-toggle="tab">Citation Count</a>
+							</li>
+						</ul>
+	
+						<!-- Tab panes -->
+						<div class="tab-content">
+							<div role="tabpanel" class="tab-pane fade in active tm-white-bg" id="hotel">
+								<div class="tm-search-box effect2">
+									<div class="tm-form-inner">
+									<form action = "/search/citation" method = "GET" class="hotel-search-form">	
+										<div class="form-group">
+										<input class="form-control" type ="text" placeholder = "Scopus id " id="scopusId" name="scopusid">	
+										</div>		
+									</div>			
+										<div class="form-group tm-yellow-gradient-bg text-center">
+											<button type="submit" name="submit" class="tm-yellow-btn">Submit</button>
+										</div>  
+									</form>
+								</div>
+							</div>				    
+						</div>
+					</div>		
+				</div>								
+			</div>
+
+			<div class="col-lg-4 col-md-4 col-sm-6">
+				<div class="tm-home-box-1">
+					<ul class="nav nav-tabs tm-white-bg" role="tablist" id="hotelCarTabs">
+						<li role="presentation" class="active">
+							<a href="#hotel" aria-controls="hotel" role="tab" data-toggle="tab">Scopus Keyword</a>
+						</li>
+					</ul>
+
+					<!-- Tab panes -->
+					<div class="tab-content">
+						<div role="tabpanel" class="tab-pane fade in active tm-white-bg" id="hotel">
+							<div class="tm-search-box effect2">
+								<div class="tm-form-inner">
+								<form action = '/search/scopus' method = 'GET'class="hotel-search-form">	
+									<div class="form-group">
+									<input class="form-control" type ='text'id='keyWord' placeholder = 'Keyword' name='keyword'>	
+									</div>		
+								</div>			
+									<div class="form-group tm-yellow-gradient-bg text-center">
+										<button type="submit" name="submit" class="tm-yellow-btn">Submit</button>
+									</div>  
+								</form>
+							</div>
+						</div>				    
+					</div>
+				</div>				
+			</div>
+			<div class="col-lg-4 col-md-4 col-sm-6">
+				<div class="tm-home-box-1">
+					<ul class="nav nav-tabs tm-white-bg" role="tablist" id="hotelCarTabs">
+						<li role="presentation" class="active">
+							<a href="#hotel" aria-controls="hotel" role="tab" data-toggle="tab">Serial Title</a>
+						</li>
+					</ul>
+
+					<!-- Tab panes -->
+					<div class="tab-content">
+						<div role="tabpanel" class="tab-pane fade in active tm-white-bg" id="hotel">
+							<div class="tm-search-box effect2">
+								<div class="tm-form-inner">
+								<form action = '/search/serial' method = 'GET' class="hotel-search-form">	
+									<div class="form-group">
+									<input class="form-control" type ='text' id='issn' placeholder = 'ISSN' name='issn'>	
+									</div>		
+								</div>			
+									<div class="form-group tm-yellow-gradient-bg text-center">
+										<button type="submit" name="submit" class="tm-yellow-btn">Submit</button>
+									</div>  
+								</form>
+							</div>
+						</div>				    
+					</div>
+				</div>				
+			</div>
+		</div>
+	<script type="text/javascript" src="/jquery-1.11.2.min.js"></script>      		<!-- jQuery -->
+  	<script type="text/javascript" src="/jquery.flexslider-min.js"></script>
+
+   	<script type="text/javascript" src="/templatemo-script.js"></script>      		<!-- Templatemo Script -->
+	<script>
+		// HTML document is loaded. DOM is ready.
+		$(function() {
+
+			// https://css-tricks.com/snippets/jquery/smooth-scrolling/
+		  	$('a[href*=#]:not([href=#])').click(function() {
+			    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+			      var target = $(this.hash);
+			      target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+			      if (target.length) {
+			        $('html,body').animate({
+			          scrollTop: target.offset().top
+			        }, 1000);
+			        return false;
+			      }
+			    }
+		  	});
+		});
+		
+		// Load Flexslider when everything is loaded.
+		$(window).load(function() {	  		
+		    $('.flexslider').flexslider({
+			    controlNav: false
+		    });
+
+
+	  	});
+	</script>
+ </body>
+ </html>

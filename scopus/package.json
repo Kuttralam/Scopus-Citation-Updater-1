@@ -9,6 +9,7 @@
     "express": "^4.17.1",
     "express-session": "^1.17.0",
     "fast-xml-parser": "^3.15.1",
+    "istanbul": "^0.4.5",
     "mongodb": "^3.5.3",
     "mongoose": "^5.8.11",
     "node-cleanup": "^2.1.2",
@@ -26,7 +27,8 @@
     "supertest": "^4.0.2"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "coverage":"istanbul cover _mocha "
   },
   "author": "sathiyajith and team",
   "license": "ISC",

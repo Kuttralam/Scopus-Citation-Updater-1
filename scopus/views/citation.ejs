@@ -9,12 +9,16 @@
 <% var searchdata = JSON.parse(results) %>
 <% var entry = searchdata["search-results"]["entry"] %>
 <% var count = entry[0]["citedby-count"] %>
-<% console.log(entry) %>
+<% console.log(count) %>
+<% var answer = count %>
+<% if (count==undefined){ %>
+    <% answer = "No Results!!" %>
+<% } %>
 <div id="bodybox">
     <h1>
         CITATION COUNT 
     </h1>
 <h1>
-    <%=count%>
+    <%=answer%>
 </h1>
 <%- include ('partials/footer.ejs'); -%>
