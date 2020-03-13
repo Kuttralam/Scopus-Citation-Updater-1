@@ -15,8 +15,6 @@
     }
 </style>
   </head>
-  <% var data = JSON.parse(users) %>
-    <%= console.log(data) %>
   <body class="tm-gray-bg">
 	  
   	<section class="tm-banner">
@@ -25,8 +23,8 @@
 		  <ul class="slides">
 		    <li>
 			    <div class="tm-banner-inner">
-					<h1 class="tm-banner-title">Welcome <span class="tm-yellow-text">Sathiyajith</span></h1>
-					<p class="tm-banner-subtitle"><span class="tm-yellow-text">ORCID ID</span> 0000-1111-2222-3333</p>
+					<h1 class="tm-banner-title">Welcome <span class="tm-yellow-text"><%= data.name %></span></h1>
+					<p class="tm-banner-subtitle"><span class="tm-yellow-text">ORCID ID </span><%= data.orcid %></p>
 					<a href="/excel" class="tm-banner-link">Excel Sheet</a>	
 				</div>
 				<img src="res/banner-1.jpg" alt="Image" />	
