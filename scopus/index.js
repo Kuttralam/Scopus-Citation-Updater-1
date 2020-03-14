@@ -331,7 +331,12 @@ app.get('/auth/logout', function (req, res) {
 app.get("/index",checkAuth,function(req,res)
 {
     var b = JSON.stringify(req.user);
-    res.render("index",{users:b});
+    if (b==undefined)
+    {
+        res.send("No details");
+    }
+    var data = JSON.parse(b);
+    res.render("index",{data:data});
    
 }); 
   
