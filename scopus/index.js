@@ -107,7 +107,8 @@ app.get("/removing",function(req,res)
 
 app.get("/",function(req,res)
 {
-    console.log("welcome page");
+    console.log("home page");
+    console.log("Tests like UI, Unit, static, Jenkins supported")
    res.render("welcome") 
 });
 app.get("/search/citation",function(req,res)
